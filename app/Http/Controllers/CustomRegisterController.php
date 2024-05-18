@@ -23,21 +23,22 @@ class CustomRegisterController extends Controller
                 'name' => 'required|string|max:255',
                 'email' => 'required|string|email|max:255|unique:users',
                 'password' => 'required|string|min:8|confirmed',
-                'phone' => 'required|regex:/^([0-9\s\-\+\(\)]*)$/|min:10',
+                'phone' => 'required|string|min:10|max:15',
+                'country_code' => 'required|string|in:62,1',
             ]);
 
-            // Buat user baru
+            $formattedPhone = '+' . $request->country_code . preg_replace('/[^0-9]/', '', $request->phone);
+
             $user = User::create([
                 'name' => $request->name,
                 'email' => $request->email,
                 'password' => Hash::make($request->password),
-                'phone' => $request->phone,
+                'phone' => $formattedPhone,
             ]);
 
             event(new Registered($user));
 
 
-            // Respons jika sukses
             $responseData = [
                 'status' => 'success',
                 'title' => 'Registration Success',

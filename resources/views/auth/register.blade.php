@@ -57,7 +57,10 @@
                         <div class="row mb-3">
                             <label for="phone" class="col-md-2 col-form-label text-md-start fw-bold">{{ __('Phone') }}</label>
                             <div class="col-md-2">
-                                <input id="phone_prefix" type="text" class="form-control" value="+62" readonly>
+                                <select class="form-select" name="country_code" id="country_code">
+                                    <option value="62">+62</option>
+                                    <option value="1">+1</option>
+                                </select>
                             </div>
                             <div class="col-md-8">
                                 <input id="phone" type="text" class="form-control @error('phone') is-invalid @enderror" name="phone" value="{{ old('phone') }}" required placeholder="812xxxxxx" autocomplete="phone" autofocus>
