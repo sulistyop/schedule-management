@@ -121,7 +121,15 @@
 
 </head>
 <body>
-
+    @if(Route::is('login'))
+        <div class="d-flex fixed-top justify-content-end end-0">
+            <div class="card border-0 rounded-5 me-5 mt-4 shadow">
+                <div class="p-2">
+                    <span class="fw-bold m-2 p-2">Don't have an Account ? <a href="{{ route('register') }}" class="text-decoration-none">Register</a></span>
+                </div>
+            </div>
+        </div>
+    @endif
     @include('layouts.modal')
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-lg @if(Route::is('login')) d-none @endif">
@@ -223,15 +231,7 @@
                     @endif
                 </div>
             </div>
-            @if(Route::is('login'))
-                <div class="d-flex fixed-top justify-content-end end-0">
-                        <div class="card border-0 rounded-5 me-5 mt-4 shadow">
-                            <div class="p-2">
-                                <span class="fw-bold m-2 p-2">Don't have an Account ? <a href="{{ route('register') }}" class="text-decoration-none">Register</a></span>
-                        </div>
-                    </div>
-                </div>
-            @endif
+
         </div>
     </footer>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
